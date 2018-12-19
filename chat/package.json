@@ -1,0 +1,13 @@
+{
+  "name": "chatter",
+  "version": "1.0.0",
+  "description": "practice-chat-app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "S C",
+  "license": "ISC",
+  "socket.io": "*",
+  "express": "*"
+}
