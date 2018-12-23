@@ -14,7 +14,18 @@ app.get('/', (req,res)=> {
 // listen on the 'connection' event for incoming sockets, and logs it to the console.
 io.on('connection', function(socket){
   connections.push(socket);
-  console.log('a user connected');
+  io.emit('this', { will: 'be received by everyone'});
+  console.log('a user connected', connections.length);
+
+  socket.on('private message', function (from, msg) {
+    console.log('I received a private message by ', from, ' saying ', msg);
+  });
+
+  socket.on('disconnect', function () {
+    connections.splice(connections.indexOf(socket), 1)
+    // io.emit('user disconnected', connections.length);
+    console.log('user disconnected', connections.length)
+  });
 });
 
 const port = process.env.PORT || 3000;
