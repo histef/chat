@@ -26,6 +26,11 @@ io.on('connection', function(socket){
     // io.emit('user disconnected', connections.length);
     console.log('user disconnected', connections.length)
   });
+
+  socket.on('send message', data => {
+    io.emit('new message', {msg: data})
+    console.log('got message: data')
+  })
 });
 
 const port = process.env.PORT || 3000;
