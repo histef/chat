@@ -27,13 +27,15 @@ io.on('connection', function(socket){ //connects socket.io on server, now need t
     io.emit('user disconnected', connections.length);
     console.log('user disconnected', connections.length)
   });
-
-  socket.on('send message', data => {
-    io.emit('new message', {msg: data})
-    console.log('got message: data')
+  //handles user input
+  socket.on('chat-message', data => {
+    //send to all users
+    io.emit('chat-message',data)
+    console.log('got message: ', data)
   })
 });
 
 const port = process.env.PORT || 3000;
 server.listen(port, console.log('server running'));
 
+//older version uses io.sockets.emit instead of io.emit
