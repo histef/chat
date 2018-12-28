@@ -41,7 +41,7 @@
             <label for="message">enter message</label>
             <textarea id="message" name="message"  class="form-control"></textarea>
             <br />
-            <button id="send" type="submit" class="btn btn-primary" value='send message'></button>
+            <button id="send" type="submit" class="btn btn-primary" value='send message'>Send</button>
           </div>
         </div>
         </div>
@@ -59,7 +59,6 @@
 
     // emit events
     sendBtn.addEventListener('click', (e) => {
-      // e.preventDefault();
       console.log('message submitted', e);
       socket.emit('chat-message', {
         message: message.value
