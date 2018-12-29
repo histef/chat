@@ -1,0 +1,15 @@
+
+#output {
+  width: 500px;
+  height: 175px;
+}
+
+#chat-window {
+  width: 500px;
+  height: 200px;
+}
+
+#broadcast {
+  width: 500px;
+  height: 25px;
+}

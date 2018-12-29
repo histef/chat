@@ -5,26 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chat IO</title>
+  <link rel="stylesheet" href="styles.css" type="text/css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <!-- load socket.io for client-side -->
   <script src="/socket.io/socket.io.js"></script>
-  <style>
-    #output {
-      width: 500px;
-      height: 175px;
-    }
-
-    #chat-window {
-      width: 500px;
-      height: 200px;
-    }
-
-    #broadcast {
-      width: 500px;
-      height: 25px;
-    }
-  </style>
 </head>
 <body>
   <h1 class="text-center mt-3 mb-5">Chat IO</h1>
@@ -53,42 +38,6 @@
         </div>
     </div>
   </div>
-  <script>
-    let socket = io.connect('http://localhost:3000');
-
-    let message = document.getElementById("message");
-    let sendBtn = document.querySelector('#send');
-    let output = document.querySelector('#output');
-    //for broadcasting a message
-    let broadcast = document.querySelector('#broadcast');
-
-    let chat = document.querySelector('#chat');
-    let messageForm = document.querySelector("#message-form");
-
-    // emit events
-    //will emit to everyone including sender
-    sendBtn.addEventListener('click', (e) => {
-      console.log('message submitted', e);
-      socket.emit('chat-message', {
-        message: message.value
-      })
-    })
-
-    //emit to everyone BUT sender. 1st param must match server-side socket.on
-    message.addEventListener('keypress', () => {
-      socket.emit('typing', message.value)
-    })
-
-    //listen for events
-    socket.on('chat-message', data => {
-      //clear broadcast when user sends message
-      broadcast.innerHTML = '';
-      output.innerHTML += `<p>${data.message}</p>`;
-    })
-
-    socket.on('typing', data => {
-      broadcast.innerHTML = `<p><em> ${data} is typing</em></p>`
-    })
-  </script>
+  <script src='/chat.js' type='text/javascript'></script>
 </body>
 </html>

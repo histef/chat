@@ -1,6 +1,6 @@
-const app = require('express')(); //initialize 'app' to be a fn hndler to supply to HTTP server
-// const express = require('express');
-// const app = express();
+// const app = require('express')(); //initialize 'app' to be a fn hndler to supply to HTTP server
+const express = require('express');
+const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
@@ -8,9 +8,7 @@ users = [];
 connections = [];
 
 //static file
-app.get('/', (req,res)=> {
-  res.sendFile(__dirname + '/index.html')
-})
+app.use(express.static('public'));
 
 // listens on the 'connection' event for incoming sockets(new user), and logs it to the console.
 io.on('connection', function(socket){ //connects socket.io on server, now need to connect to client(see index.html)
