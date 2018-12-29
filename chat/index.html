@@ -81,6 +81,8 @@
 
     //listen for events
     socket.on('chat-message', data => {
+      //clear broadcast when user sends message
+      broadcast.innerHTML = '';
       output.innerHTML += `<p>${data.message}</p>`;
     })
 
