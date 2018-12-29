@@ -28,6 +28,7 @@ io.on('connection', function(socket){ //connects socket.io on server, now need t
   //handles user input
   socket.on('chat-message', data => {
     //send to all users(io)
+    //data is username and message
     io.emit('chat-message',data)
     console.log('got message: ', data)
   });

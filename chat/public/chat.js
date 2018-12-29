@@ -5,14 +5,15 @@ const sendBtn = document.querySelector('#send');
 const output = document.querySelector('#output');
 //for broadcasting a message
 const broadcast = document.querySelector('#broadcast');
-
-const chat = document.querySelector('#chat');
-const messageForm = document.querySelector("#message-form");
+const username = document.querySelector('#username');
+// const chat = document.querySelector('#chat');
+// const messageForm = document.querySelector("#message-form");
 
 // emit events
 //will emit to everyone including sender
 sendBtn.addEventListener('click', (e) => {
   socket.emit('chat-message', {
+    username: username.value,
     message: message.value
   })
 })
@@ -26,7 +27,7 @@ message.addEventListener('keypress', () => {
 socket.on('chat-message', data => {
   //clear broadcast when user sends message
   broadcast.innerHTML = '';
-  output.innerHTML += `<p>${data.message}</p>`;
+  output.innerHTML += `<p><strong>${data.username}: </strong> ${data.message}</p>`;
 })
 
 socket.on('typing', data => {
