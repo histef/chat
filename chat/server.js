@@ -32,6 +32,11 @@ io.on('connection', function(socket){ //connects socket.io on server, now need t
     //send to all users
     io.emit('chat-message',data)
     console.log('got message: ', data)
+  });
+
+  socket.on('typing', data => {
+    //send to all users except sender
+    socket.broadcast.emit('typing', data)
   })
 });
 
