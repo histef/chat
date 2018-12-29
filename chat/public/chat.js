@@ -12,7 +12,6 @@ const messageForm = document.querySelector("#message-form");
 // emit events
 //will emit to everyone including sender
 sendBtn.addEventListener('click', (e) => {
-  console.log('message submitted', e);
   socket.emit('chat-message', {
     message: message.value
   })

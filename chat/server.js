@@ -27,13 +27,13 @@ io.on('connection', function(socket){ //connects socket.io on server, now need t
   });
   //handles user input
   socket.on('chat-message', data => {
-    //send to all users
+    //send to all users(io)
     io.emit('chat-message',data)
     console.log('got message: ', data)
   });
 
   socket.on('typing', data => {
-    //send to all users except sender
+    //send to all users except sender(socket)
     socket.broadcast.emit('typing', data)
   })
 });
